@@ -7,6 +7,7 @@
   <script>
     console.log(`Hello there! Let's play Rock, Paper, Scissors!`);
 
+//Determine computer's selection
     function computerPlay() {
       const choice = Math.floor(Math.random()*3);
       if (choice == 0) {
@@ -17,6 +18,48 @@
         return "Scissors";
       }
     }
+//Determine each player's choices
+
+//Function to determine winner of round.
+
+function playARound(playerSelection, computerSelection) {
+computerSelection = computerPlay();
+playerSelection = prompt(`What's your choice? Rock, Paper, or Scissors?`);
+const lowerCase = playerSelection.toLowerCase();
+const fixedPlayerSelection = playerSelection.charAt(0).toUpperCase() + lowerCase.slice(1);
+playerSelection = fixedPlayerSelection;
+
+  switch(true) {
+    case (playerSelection == computerSelection):
+      return `Computer also chose ${computerSelection}. It's a tie!`
+      break;
+    case (playerSelection == 'Rock' && computerSelection == 'Paper'):
+      return "You lose. Paper covers Rock."
+      break;
+    case (playerSelection == 'Rock' && computerSelection == 'Scissors'):
+      return "You win! Rock crushes Scissors."
+      break;
+    case (playerSelection == 'Paper' && computerSelection == 'Rock'):
+      return "You win! Paper covers Rock."
+      break;
+    case (playerSelection == 'Paper' && computerSelection == 'Scissors'):
+      return "You lose. Scissors cuts Paper."
+      break;
+    case (playerSelection == 'Scissors' && computerSelection == 'Rock'):
+      return "You lose. Rock crushes Scissors."
+      break;
+    case (playerSelection == 'Scissors' && computerSelection == 'Paper'):
+      return "You win! Scissors cuts Paper."
+      break;
+    default:
+      return "There may have been an error. Please reload the page and choose either Rock, Paper, or Scissors.";    
+  }
+}
+
+//Output results to console of a single round.
+console.log(playARound());
+
+//
 
   </script>
 </body>
