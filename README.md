@@ -4,3 +4,8 @@ We’re going to make a simple implementation of  grade-school classic “rock p
 Quickly realized a switch statement was the better way to write the playARound function. May have consolidated too many actions in my playARound function, but it didn't seem to work otherwise.
 
 Also took the opportunity to learn more about writing longer git commit messages.
+
+settled on playRound as a better function name
+
+learned more about how to take advantage of scope rules to write several functions that then utitlized variables from parent scopes
+
