@@ -69,69 +69,38 @@
 
 //Game of 5 rounds
 function game() {
-  alert(`Great, you are going to play 5 rounds of RPS, and I'll keep track of who wins and loses each round. Good luck!`)
+  alert(`You are going to play 5 rounds of RPS against the computer, and I'll keep track of who wins and loses each round. Good luck!`)
   //reset computer and player scores to 0
   let computerScore = 0;
   let playerScore = 0;
-  /*set up a game round??
-  Make each round the same code, running playRound, changing the score, and alerting the result and logging the current score.
-
-  function gameRound() = {
+  /*Declare a game round: run playRound, update the score, alert the result and log the current score.*/
+  function gameRound() {
     let result = playRound();
     if (result.indexOf("You win") > -1) {
       playerScore++; 
     } else if (result.indexOf("You lose") > -1) {
       computerScore++;
-  }
-  */
+    }
+    alert(result);
+  }  
   //run round #1 and log the score
-  let result1 = playRound();
-  if (result1.indexOf("You win") > -1) {
-    playerScore++; 
-  } else if (result1.indexOf("You lose") > -1) {
-    computerScore++;
-  } 
-  alert(result1);
+  gameRound();
   console.log(`After 1 round, the score is: You ${playerScore}, Computer ${computerScore}.`);
 
   //run round #2 and log the updated score
-  let result2 = playRound();
-  if (result2.indexOf("You win") > -1) {
-    playerScore++; 
-  } else if (result2.indexOf("You lose") > -1) {
-    computerScore++;
-  } 
-  alert(result2);
+  gameRound();
   console.log(`After 2 rounds, the score is: You ${playerScore}, Computer ${computerScore}.`);
 
   //run round #3 and log the updated score
-  let result3 = playRound();
-  if (result3.indexOf("You win") > -1) {
-    playerScore++; 
-  } else if (result3.indexOf("You lose") > -1) {
-    computerScore++;
-  } 
-  alert(result3);
+  gameRound();
   console.log(`After 3 rounds, the score is: You ${playerScore}, Computer ${computerScore}.`);
 
   //run round #4 and log the updated score
-  let result4 = playRound();
-  if (result4.lastIndexOf("You win") > -1) {
-    playerScore++; 
-  } else if (result4.indexOf("You lose") > -1) {
-    computerScore++;
-  } 
-  alert(result4);
+  gameRound();
   console.log(`After 4 rounds, the score is: You ${playerScore}, Computer ${computerScore}.`);
 
   //run round #5 and update the score internally
-  let result5 = playRound();
-  if (result5.indexOf("You win") > -1) {
-    playerScore++; 
-  } else if (result5.indexOf("You lose") > -1) {
-    computerScore++;
-  } 
-  alert(result5);
+  gameRound();
   console.log (`Player score: ${playerScore}, Computer score: ${computerScore}`);
 
   //compare scores and return the winner
@@ -148,6 +117,7 @@ function game() {
   console.log(whoWins());
   alert(whoWins());  
 }
+game();
   </script>
 </body>
 </html>
