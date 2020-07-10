@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+  <meta charset="UTF-8">
+  <title>Rock, Paper, Scissors prototype</title>
 </head>  
 <body>
 <script>
   alert(`Hello there! Let's play Rock, Paper, Scissors!`);
   console.log(`Hello there! Let's play Rock, Paper, Scissors!`);
-
   //Function that determines computer's selection
   function computerPlay() {
       const choice = Math.floor(Math.random()*3);
@@ -63,17 +63,15 @@
       }
   }
 }
-
 //Output results to console of a single round.
 //console.log(playRound());
-
 //Game of 5 rounds
 function game() {
   alert(`You are going to play 5 rounds of RPS against the computer, and I'll keep track of who wins and loses each round. Good luck!`)
   //reset computer and player scores to 0
   let computerScore = 0;
   let playerScore = 0;
-  /*Declare a game round: run playRound, update the score, alert the result and log the current score.*/
+  //Declare a game round: run playRound, update the score, and alert the result.
   function gameRound() {
     let result = playRound();
     if (result.indexOf("You win") > -1) {
@@ -86,23 +84,18 @@ function game() {
   //run round #1 and log the score
   gameRound();
   console.log(`After 1 round, the score is: You ${playerScore}, Computer ${computerScore}.`);
-
   //run round #2 and log the updated score
   gameRound();
   console.log(`After 2 rounds, the score is: You ${playerScore}, Computer ${computerScore}.`);
-
   //run round #3 and log the updated score
   gameRound();
   console.log(`After 3 rounds, the score is: You ${playerScore}, Computer ${computerScore}.`);
-
   //run round #4 and log the updated score
   gameRound();
   console.log(`After 4 rounds, the score is: You ${playerScore}, Computer ${computerScore}.`);
-
   //run round #5 and update the score internally
   gameRound();
   console.log (`Player score: ${playerScore}, Computer score: ${computerScore}`);
-
   //compare scores and return the winner
   whoWins();
   function whoWins() {
@@ -117,6 +110,7 @@ function game() {
   console.log(whoWins());
   alert(whoWins());  
 }
+//Run the Rock, Paper, Scissors game!
 game();
   </script>
 </body>
