@@ -1,22 +1,46 @@
 h1, h2, h3 {
     text-align: center;
 }
+.buttons {
+    text-align: center;
+    padding: 0px 10px 10px 10px;
+}
 button {
     font-family: fantasy, Arial, Helvetica, sans-serif;
     font-size: 28px;
-    min-width: 125px;
-    max-width: 200px;
+    max-width: 300px;
     padding: 10px;
+    margin: 0px 10px;
     background-color: rgba(248, 112, 112, 0.788);
     border: 2px solid rgba(248, 112, 112, 0.788);
     border-radius: 50%;
     outline: none;
 }
-.buttons {
-    width: fit-content;
-    margin: 0 auto;
-    padding: 0px 10px 10px;
+button:hover {
+    cursor: grab;
 }
+button img {
+    display: block;
+    margin: 0 auto;
+}
+#rockPic {
+    width: 75px;
+    border-radius: 45%;
+}
+#rockbtn {
+}
+#paperPic {
+    width: 75px;
+    border-radius: 45%;
+}
+#paperbtn {
+}
+#scissorsPic {
+    width: 75px;
+}
+#scissorsbtn {
+}
+
 h1 {
     font-size: 48px;
 }
@@ -31,7 +55,7 @@ h3 {
     border: black solid 5px;
     border-radius: 25px;
     margin: 5px auto;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 #results-container {
     background-color: rgba(0, 214, 252, 0.671);
@@ -54,4 +78,10 @@ h3 {
     border-radius: 10px;
     text-align: center;
     padding: 5px 0;
+}
+.win-lose {
+    display: block;
+    max-width: 200px;
+    margin: 10px auto;
+    border-radius: 40%;
 }
