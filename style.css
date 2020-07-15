@@ -1,0 +1,57 @@
+h1, h2, h3 {
+    text-align: center;
+}
+button {
+    font-family: fantasy, Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    min-width: 125px;
+    max-width: 200px;
+    padding: 10px;
+    background-color: rgba(248, 112, 112, 0.788);
+    border: 2px solid rgba(248, 112, 112, 0.788);
+    border-radius: 50%;
+    outline: none;
+}
+.buttons {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0px 10px 10px;
+}
+h1 {
+    font-size: 48px;
+}
+h2 {
+    font-size: 20px;
+}
+h3 {
+    font-size: 16px;
+}
+#playingArea {
+    background-color: rgba(92, 252, 0, 0.555);
+    border: black solid 5px;
+    border-radius: 25px;
+    margin: 5px auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#results-container {
+    background-color: rgba(0, 214, 252, 0.671);
+    border: black solid 5px;
+    border-radius: 25px;
+    padding: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, sans-serif;
+    font-size: 20px;
+    display: none;
+    
+}
+.round-result {
+    background-color: lightcoral;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px 0;
+}
+.score {
+    background-color: violet;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px 0;
+}

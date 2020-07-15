@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Rock, Paper, Scissors prototype</title>
+  <link rel="stylesheet" href="style.css">
 </head>  
 <body>
   <div id=playingArea>
     <h1>Rock, Paper, Scissors</h1>
     <h2>You vs. the Computer: First one to 5 victories wins!</h2>
     <h3>Make your choice</h3>
-    <button id='rockbtn' class="btn">Rock</button>
-    <button id='paperbtn' class="btn">Paper</button>
-    <button id='scissorsbtn' class="btn">Scissors</button>
+    <div class="buttons">
+      <button id='rockbtn' class="btn">Rock</button>
+      <button id='paperbtn' class="btn">Paper</button>
+      <button id='scissorsbtn' class="btn">Scissors</button>
+    </div>
   </div>
   <div id=results-container>
 
@@ -46,11 +49,14 @@
   let resultText = "";
   
   function playRound() {
+    resultsContainer.innerHTML = ""
+    resultsContainer.style.display = "block";
     const roundResult = document.createElement('div'); 
+    roundResult.classList.add('round-result');
     const computerSelection = computerPlay();
-    if (!playerSelection) {
+    /*if (!playerSelection) {
       roundResult.textContent = "Game canceled. You lose without even trying!";
-    } else {
+    } else {*/
       switch(true) {
         case (playerSelection == computerSelection):
           roundResult.textContent = `Computer also chooses ${computerSelection}. It's a tie!`
@@ -79,35 +85,37 @@
     resultsContainer.appendChild(roundResult);
     resultText = roundResult.textContent;
     updateScore();
-    }
+    //}
   }
 
   function updateScore() {
     if (resultText.indexOf("You win") > -1) {
-      playerScore++; 
+      ++playerScore; 
     } else if (resultText.indexOf("You lose") > -1) {
-      computerScore++;
+      ++computerScore;
     } else {
-      numOfTies++;
+      ++numOfTies;
     }
     const currentScoreDiv = document.createElement('div');
+    currentScoreDiv.classList.add('score');
     currentScoreDiv.textContent = `The score is -- You: ${playerScore}, Computer: ${computerScore}, Ties: ${numOfTies}.`;
     resultsContainer.appendChild(currentScoreDiv);
   
     if (playerScore == 5 || computerScore == 5) {
-      alert(whoWins());
+      const finalResult = whoWins();
+      currentScoreDiv.textContent = finalResult;
+      resultsContainer.appendChild(currentScoreDiv);
       computerScore = 0;
       playerScore = 0;
       numOfTies = 0;
-      resultsContainer.innerHTML = "";
     };
   }
 
   function whoWins() {
     if(playerScore > computerScore) {
-      return `You win the game! The final score was: You ${playerScore}, the Computer ${computerScore}, and Ties ${numOfTies}`;
+      return `You win the game! The final score was: You ${playerScore}, the Computer ${computerScore}, and ${numOfTies} Tie(s).`;
     } else {
-      return `Aw, bummer! You lose the game. The final score was: You ${playerScore}, Computer ${computerScore}, Ties ${numOfTies}.`;
+      return `Aw, bummer! You lose the game. The final score was: You ${playerScore}, Computer ${computerScore}, and ${numOfTies} Tie(s).`;
     } 
   }
   </script>
