@@ -11,7 +11,7 @@
     <h2>You vs. the Computer: First one to 5 victories wins!</h2>
     <h3>Make your choice</h3>
     <div class="buttons">
-      <button id='rockbtn' class="btn"><img src="Assets/rock.jpeg" id="rockPic">Rock</button>
+      <button id='rockbtn' class="btn"><img src="Assets/Rock.jpeg" id="rockPic">Rock</button>
       <button id='paperbtn' class="btn"><img src ="Assets/paper.jpeg" id="paperPic">Paper</button>
       <button id='scissorsbtn' class="btn"><img id="scissorsPic" src="Assets/scissors.png">Scissors</button>
     </div>
@@ -116,7 +116,7 @@
       const winnerDiv = document.createElement('div');
       const winnerImg = document.createElement('img');
       winnerImg.classList.add('win-lose');
-      winnerImg.setAttribute("src", "Assets/winner.jpeg");
+      winnerImg.setAttribute("src", "Assets/Winner.jpeg");
       winnerDiv.appendChild(winnerImg);
       resultsContainer.appendChild(winnerDiv);
       return `You win the game! The final score was: You ${playerScore}, the Computer ${computerScore}, and ${numOfTies} Tie(s).`;
@@ -124,7 +124,7 @@
       const loserDiv = document.createElement('div');
       const loserImg = document.createElement('img');
       loserImg.classList.add('win-lose');
-      loserImg.setAttribute("src", "Assets/crying.png");
+      loserImg.setAttribute("src", "Assets/Crying.png");
       loserDiv.appendChild(loserImg);
       resultsContainer.appendChild(loserDiv);
       return `Aw, bummer! You lose the game. The final score was: You ${playerScore}, Computer ${computerScore}, and ${numOfTies} Tie(s).`;
