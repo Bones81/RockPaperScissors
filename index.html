@@ -7,6 +7,7 @@
 <body>
   <div id=playingArea>
     <h1>Rock, Paper, Scissors</h1>
+    <h2>You vs. the Computer: First one to 5 victories wins!</h2>
     <h3>Make your choice</h3>
     <button id='rockbtn' class="btn">Rock</button>
     <button id='paperbtn' class="btn">Paper</button>
@@ -16,6 +17,21 @@
 
   </div>
 <script>
+  let computerScore = 0;
+  let playerScore = 0;
+  let numOfTies = 0;
+  let playerSelection = "";
+  let resultsContainer = document.querySelector('#results-container');
+
+  const buttons = document.querySelectorAll('button');  
+  buttons.forEach((button) => {
+    button.addEventListener('click', function(e) {
+      playerSelection = e.target.textContent;
+      playerSelection = playerSelection.toLowerCase();
+      playRound();
+    });
+  });
+  
   function computerPlay() {
       const choice = Math.floor(Math.random()*3);
       if (choice == 0) {
@@ -26,89 +42,74 @@
         return "scissors";
       }
     }
-  
-  let playerSelection = "";
-  
-  const buttons = document.querySelectorAll('button');  
-  buttons.forEach((button) => {
-    button.addEventListener('click', function(e) {
-      playerSelection = e.target.textContent;
-      playerSelection = playerSelection.toLowerCase();
-      console.log(playRound());
-    });
-  });
 
+  let resultText = "";
+  
   function playRound() {
-  let resultsContainer = document.querySelector('#results-container');
-  const resultDiv = document.createElement('div');  
+    const roundResult = document.createElement('div'); 
     const computerSelection = computerPlay();
-    if (playerSelection == null||playerSelection == false) {
-      resultDiv.textContent = "Game canceled. You lose without even trying!";  
+    if (!playerSelection) {
+      roundResult.textContent = "Game canceled. You lose without even trying!";
     } else {
       switch(true) {
         case (playerSelection == computerSelection):
-          resultDiv.textContent = `Computer also chooses ${computerSelection}. It's a tie!`
+          roundResult.textContent = `Computer also chooses ${computerSelection}. It's a tie!`
           break;
         case (playerSelection == 'rock' && computerSelection == 'paper'):
-          resultDiv.textContent = "Computer chooses paper. You lose. Paper covers rock."
+          roundResult.textContent = "Computer chooses paper. You lose. Paper covers rock."
           break;
         case (playerSelection == 'rock' && computerSelection == 'scissors'):
-          resultDiv.textContent = "Computer chooses scissors. You win! Rock crushes scissors."
+          roundResult.textContent = "Computer chooses scissors. You win! Rock crushes scissors."
           break;
         case (playerSelection == 'paper' && computerSelection == 'rock'):
-          resultDiv.textContent = "Computer chooses rock. You win! Paper covers rock."
+          roundResult.textContent = "Computer chooses rock. You win! Paper covers rock."
           break;
         case (playerSelection == 'paper' && computerSelection == 'scissors'):
-          resultDiv.textContent = "Computer chooses scissors. You lose. Scissors cuts paper."
+          roundResult.textContent = "Computer chooses scissors. You lose. Scissors cuts paper."
           break;
         case (playerSelection == 'scissors' && computerSelection == 'rock'):
-          resultDiv.textContent = "Computer chooses rock. You lose. Rock crushes scissors."
+          roundResult.textContent = "Computer chooses rock. You lose. Rock crushes scissors."
           break;
         case (playerSelection == 'scissors' && computerSelection == 'paper'):
-          resultDiv.textContent = "Computer chooses paper. You win! Scissors cuts paper."
+          roundResult.textContent = "Computer chooses paper. You win! Scissors cuts paper."
           break;
         default:
-          resultDiv.textContent = "Invalid selection. You lose.";    
+          roundResult.textContent = "Invalid selection. You lose.";    
       }
-  resultsContainer.appendChild(resultDiv);    
+    resultsContainer.appendChild(roundResult);
+    resultText = roundResult.textContent;
+    updateScore();
+    }
   }
-}
 
-//Game of 5 rounds
-function scoreKeeper() {
-  //reset computer and player scores to 0
-  let computerScore = 0;
-  let playerScore = 0;
-  let numOfTies = 0;
-  //Declare a game round: run playRound, update the score, and alert the result.
-  function scoreUpdate() {
-    let result = resultDiv.textContent;
-    if (result.indexOf("You win") > -1) {
+  function updateScore() {
+    if (resultText.indexOf("You win") > -1) {
       playerScore++; 
-    } else if (result.indexOf("You lose") > -1) {
+    } else if (resultText.indexOf("You lose") > -1) {
       computerScore++;
     } else {
       numOfTies++;
     }
-    console.log(result);
-    console.log(playerScore, computerScore, numOfTies);
-  }  
-  console.log(`The score is: You ${playerScore}, Computer ${computerScore}, Ties ${numOfTies}`);
-
-  if (playerScore == 5 || computerScore == 5) {
-    whoWins();
-  };
+    const currentScoreDiv = document.createElement('div');
+    currentScoreDiv.textContent = `The score is -- You: ${playerScore}, Computer: ${computerScore}, Ties: ${numOfTies}.`;
+    resultsContainer.appendChild(currentScoreDiv);
+  
+    if (playerScore == 5 || computerScore == 5) {
+      alert(whoWins());
+      computerScore = 0;
+      playerScore = 0;
+      numOfTies = 0;
+      resultsContainer.innerHTML = "";
+    };
+  }
 
   function whoWins() {
     if(playerScore > computerScore) {
-      return `You win the game! The final score was: You ${playerScore}, Computer ${computerScore}, Ties ${numOfTies}`;
+      return `You win the game! The final score was: You ${playerScore}, the Computer ${computerScore}, and Ties ${numOfTies}`;
     } else {
       return `Aw, bummer! You lose the game. The final score was: You ${playerScore}, Computer ${computerScore}, Ties ${numOfTies}.`;
     } 
   }
-  console.log(whoWins());  
-}
-//Run the Rock, Paper, Scissors game!
   </script>
 </body>
 </html>
