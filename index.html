@@ -5,113 +5,110 @@
   <title>Rock, Paper, Scissors prototype</title>
 </head>  
 <body>
+  <div id=playingArea>
+    <h1>Rock, Paper, Scissors</h1>
+    <h3>Make your choice</h3>
+    <button id='rockbtn' class="btn">Rock</button>
+    <button id='paperbtn' class="btn">Paper</button>
+    <button id='scissorsbtn' class="btn">Scissors</button>
+  </div>
+  <div id=results-container>
+
+  </div>
 <script>
-  alert(`Hello there! Let's play Rock, Paper, Scissors!`);
-  console.log(`Hello there! Let's play Rock, Paper, Scissors!`);
-  //Function that determines computer's selection
   function computerPlay() {
       const choice = Math.floor(Math.random()*3);
       if (choice == 0) {
-        return "Rock";
+        return "rock";
       } else if (choice == 1) {
-        return "Paper";
+        return "paper";
       } else {
-        return "Scissors";
+        return "scissors";
       }
     }
-  function playerPlay() {
-    return prompt(`What's your choice? Rock, Paper, or Scissors?`);
-  }
-  //Function to determine results of a single round.
+  
+  let playerSelection = "";
+  
+  const buttons = document.querySelectorAll('button');  
+  buttons.forEach((button) => {
+    button.addEventListener('click', function(e) {
+      playerSelection = e.target.textContent;
+      playerSelection = playerSelection.toLowerCase();
+      console.log(playRound());
+    });
+  });
+
   function playRound() {
-    //Determine each player's choices
-    playerSelection = playerPlay();
-    computerSelection = computerPlay();
-    //Verify that an answer was entered, 
+  let resultsContainer = document.querySelector('#results-container');
+  const resultDiv = document.createElement('div');  
+    const computerSelection = computerPlay();
     if (playerSelection == null||playerSelection == false) {
-      return "Game canceled. You lose without even trying!";  
+      resultDiv.textContent = "Game canceled. You lose without even trying!";  
     } else {
-      //Format capitalization of player's answer
-      const lowerCase = playerSelection.toLowerCase();
-      const fixedPlayerSelection = playerSelection.charAt(0).toUpperCase() + lowerCase.slice(1);
-      playerSelection = fixedPlayerSelection;
-      //Determine result of round
       switch(true) {
         case (playerSelection == computerSelection):
-          return `Computer also chooses ${computerSelection}. It's a tie!`
+          resultDiv.textContent = `Computer also chooses ${computerSelection}. It's a tie!`
           break;
-        case (playerSelection == 'Rock' && computerSelection == 'Paper'):
-          return "Computer chooses Paper. You lose. Paper covers Rock."
+        case (playerSelection == 'rock' && computerSelection == 'paper'):
+          resultDiv.textContent = "Computer chooses paper. You lose. Paper covers rock."
           break;
-        case (playerSelection == 'Rock' && computerSelection == 'Scissors'):
-          return "Computer chooses Scissors. You win! Rock crushes Scissors."
+        case (playerSelection == 'rock' && computerSelection == 'scissors'):
+          resultDiv.textContent = "Computer chooses scissors. You win! Rock crushes scissors."
           break;
-        case (playerSelection == 'Paper' && computerSelection == 'Rock'):
-          return "Computer chooses Rock. You win! Paper covers Rock."
+        case (playerSelection == 'paper' && computerSelection == 'rock'):
+          resultDiv.textContent = "Computer chooses rock. You win! Paper covers rock."
           break;
-        case (playerSelection == 'Paper' && computerSelection == 'Scissors'):
-          return "Computer chooses Scissors. You lose. Scissors cuts Paper."
+        case (playerSelection == 'paper' && computerSelection == 'scissors'):
+          resultDiv.textContent = "Computer chooses scissors. You lose. Scissors cuts paper."
           break;
-        case (playerSelection == 'Scissors' && computerSelection == 'Rock'):
-          return "Computer chooses Rock. You lose. Rock crushes Scissors."
+        case (playerSelection == 'scissors' && computerSelection == 'rock'):
+          resultDiv.textContent = "Computer chooses rock. You lose. Rock crushes scissors."
           break;
-        case (playerSelection == 'Scissors' && computerSelection == 'Paper'):
-          return "Computer chooses Paper. You win! Scissors cuts Paper."
+        case (playerSelection == 'scissors' && computerSelection == 'paper'):
+          resultDiv.textContent = "Computer chooses paper. You win! Scissors cuts paper."
           break;
         default:
-          return "Invalid selection. You lose. Please type in either 'Rock,' 'Paper,' or 'Scissors.'";    
+          resultDiv.textContent = "Invalid selection. You lose.";    
       }
+  resultsContainer.appendChild(resultDiv);    
   }
 }
-//Output results to console of a single round.
-//console.log(playRound());
+
 //Game of 5 rounds
-function game() {
-  alert(`You are going to play 5 rounds of RPS against the computer, and I'll keep track of who wins and loses each round. Good luck!`)
+function scoreKeeper() {
   //reset computer and player scores to 0
   let computerScore = 0;
   let playerScore = 0;
+  let numOfTies = 0;
   //Declare a game round: run playRound, update the score, and alert the result.
-  function gameRound() {
-    let result = playRound();
+  function scoreUpdate() {
+    let result = resultDiv.textContent;
     if (result.indexOf("You win") > -1) {
       playerScore++; 
     } else if (result.indexOf("You lose") > -1) {
       computerScore++;
+    } else {
+      numOfTies++;
     }
-    alert(result);
+    console.log(result);
+    console.log(playerScore, computerScore, numOfTies);
   }  
-  //run round #1 and log the score
-  gameRound();
-  console.log(`After 1 round, the score is: You ${playerScore}, Computer ${computerScore}.`);
-  //run round #2 and log the updated score
-  gameRound();
-  console.log(`After 2 rounds, the score is: You ${playerScore}, Computer ${computerScore}.`);
-  //run round #3 and log the updated score
-  gameRound();
-  console.log(`After 3 rounds, the score is: You ${playerScore}, Computer ${computerScore}.`);
-  //run round #4 and log the updated score
-  gameRound();
-  console.log(`After 4 rounds, the score is: You ${playerScore}, Computer ${computerScore}.`);
-  //run round #5 and update the score internally
-  gameRound();
-  console.log (`Player score: ${playerScore}, Computer score: ${computerScore}`);
-  //compare scores and return the winner
-  whoWins();
+  console.log(`The score is: You ${playerScore}, Computer ${computerScore}, Ties ${numOfTies}`);
+
+  if (playerScore == 5 || computerScore == 5) {
+    whoWins();
+  };
+
   function whoWins() {
     if(playerScore > computerScore) {
-      return `You win the game! The final score was: You ${playerScore}, Computer ${computerScore}.`;
-    } else if(playerScore < computerScore) {
-      return `Aw, bummer! You lose the game. The final score was: You ${playerScore}, Computer ${computerScore}.`;
+      return `You win the game! The final score was: You ${playerScore}, Computer ${computerScore}, Ties ${numOfTies}`;
     } else {
-      return `It's a tie game! The final score was: You ${playerScore}, Computer ${computerScore}.`;
-    }
+      return `Aw, bummer! You lose the game. The final score was: You ${playerScore}, Computer ${computerScore}, Ties ${numOfTies}.`;
+    } 
   }
-  console.log(whoWins());
-  alert(whoWins());  
+  console.log(whoWins());  
 }
 //Run the Rock, Paper, Scissors game!
-game();
   </script>
 </body>
 </html>
