@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Rock, Paper, Scissors prototype</title>
+  <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
 </head>  
 <body>
   <div id=playingArea>
-    <h1>Rock, Paper, Scissors</h1>
-    <h2>You vs. the Computer: First one to 5 victories wins!</h2>
-    <h3>Make your choice</h3>
+    <h1>Rock Paper Scissors</h1>
+    <h2>You vs. the Computer</h2>
+    <h3>First one to 5 victories wins!</h3>
+    <h4>Make your choice</h4>
     <div class="buttons">
       <button id='rockbtn' class="btn"><img src="Assets/Rock.jpeg" id="rockPic">Rock</button>
       <button id='paperbtn' class="btn"><img src ="Assets/paper.jpeg" id="paperPic">Paper</button>
@@ -119,7 +121,7 @@
       winnerImg.setAttribute("src", "Assets/Winner.jpeg");
       winnerDiv.appendChild(winnerImg);
       resultsContainer.appendChild(winnerDiv);
-      return `You win the game! The final score was: You ${playerScore}, the Computer ${computerScore}, and ${numOfTies} Tie(s).`;
+      return `You win the game! The final score was: You ${playerScore}, the Computer ${computerScore}, and ${numOfTies} Tie(s). Make another choice to start a new game!`;
     } else {
       const loserDiv = document.createElement('div');
       const loserImg = document.createElement('img');
@@ -127,7 +129,7 @@
       loserImg.setAttribute("src", "Assets/Crying.png");
       loserDiv.appendChild(loserImg);
       resultsContainer.appendChild(loserDiv);
-      return `Aw, bummer! You lose the game. The final score was: You ${playerScore}, Computer ${computerScore}, and ${numOfTies} Tie(s).`;
+      return `Aw, bummer! You lose the game. The final score was: You ${playerScore}, Computer ${computerScore}, and ${numOfTies} Tie(s). Make another choice to start a new game!`;
     } 
   }
   </script>

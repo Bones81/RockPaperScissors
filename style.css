@@ -1,60 +1,79 @@
-h1, h2, h3 {
+body {
+    padding: 5px;
+}
+h1, h2, h3, h4 {
     text-align: center;
+    margin: 5px;
 }
 .buttons {
     text-align: center;
-    padding: 0px 10px 10px 10px;
+    padding: 12px;
 }
 button {
+    display: inline-block;
+    vertical-align: bottom;
     font-family: fantasy, Arial, Helvetica, sans-serif;
-    font-size: 28px;
-    max-width: 300px;
+    font-size: 26px;
+    width: 150px;
+    height: 150px;
     padding: 10px;
     margin: 0px 10px;
-    background-color: rgba(248, 112, 112, 0.788);
-    border: 2px solid rgba(248, 112, 112, 0.788);
-    border-radius: 50%;
+    background-color: rgba(248, 112, 112, 0.5);
+    border: 2px solid rgba(248, 112, 112, 0.75);
+    border-radius: 30%;
     outline: none;
 }
 button:hover {
     cursor: grab;
+    background-color: rgba(248, 112, 112, 1)
+}
+button:active {
+  background-color: rgba(248, 112, 112, 1);
+  transform: translateY(4px);
 }
 button img {
     display: block;
     margin: 0 auto;
 }
 #rockPic {
-    width: 75px;
+    width: 100px;
     border-radius: 45%;
 }
 #rockbtn {
+    
 }
 #paperPic {
-    width: 75px;
+    width: 125px;
     border-radius: 45%;
 }
 #paperbtn {
+    padding-top: 25px;
 }
 #scissorsPic {
-    width: 75px;
+    width: 125px;
 }
 #scissorsbtn {
+    padding-top: 31px;
+    line-height: 64px;
 }
 
 h1 {
     font-size: 48px;
 }
 h2 {
-    font-size: 20px;
+    font-size: 24px;
 }
 h3 {
+    font-size: 18px;
+}
+h4 {
     font-size: 16px;
 }
 #playingArea {
     background-color: rgba(92, 252, 0, 0.555);
     border: black solid 5px;
     border-radius: 25px;
-    margin: 5px auto;
+    margin-bottom: 5px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 #results-container {
